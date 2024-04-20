@@ -26,6 +26,7 @@ public class Sema11 {
                 frame.pack();
                 frame.setVisible(true);
                 //comentario
+                //comentario2
             }
         });
     }
