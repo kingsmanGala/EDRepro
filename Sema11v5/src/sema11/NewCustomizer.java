@@ -78,7 +78,6 @@ public class NewCustomizer extends javax.swing.JPanel implements java.beans.Cust
         Detener = new javax.swing.JButton();
         Siguiente = new javax.swing.JButton();
         BotonListas = new javax.swing.JButton();
-        BotonBusqueda = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         EliminarLista = new javax.swing.JButton();
@@ -92,6 +91,7 @@ public class NewCustomizer extends javax.swing.JPanel implements java.beans.Cust
         ListaListas = new javax.swing.JList<>();
         EliminarCancion1 = new javax.swing.JButton();
         MostrarCanciones = new javax.swing.JButton();
+        BusquedaBoton = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -130,14 +130,6 @@ public class NewCustomizer extends javax.swing.JPanel implements java.beans.Cust
         BotonListas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonListasActionPerformed(evt);
-            }
-        });
-
-        BotonBusqueda.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        BotonBusqueda.setText("Busqueda");
-        BotonBusqueda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonBusquedaActionPerformed(evt);
             }
         });
 
@@ -208,6 +200,14 @@ public class NewCustomizer extends javax.swing.JPanel implements java.beans.Cust
             }
         });
 
+        BusquedaBoton.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        BusquedaBoton.setText("Buscar");
+        BusquedaBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BusquedaBotonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -257,7 +257,7 @@ public class NewCustomizer extends javax.swing.JPanel implements java.beans.Cust
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(BotonListas, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BotonBusqueda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(BusquedaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -276,7 +276,7 @@ public class NewCustomizer extends javax.swing.JPanel implements java.beans.Cust
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(BotonListas, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BotonBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(BusquedaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -304,7 +304,7 @@ public class NewCustomizer extends javax.swing.JPanel implements java.beans.Cust
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(248, 248, 248)
                         .addComponent(MoverCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -620,29 +620,15 @@ private void mostrarInformacionLista(String nombreLista) {
     }
     }//GEN-LAST:event_BotonListasActionPerformed
 
-    private void BotonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBusquedaActionPerformed
-        int indiceSeleccionado = ListaListas.getSelectedIndex();
-        if (indiceSeleccionado != -1) {
-            listaActual = listModel.getElementAt(indiceSeleccionado);
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            int result = fileChooser.showOpenDialog(this);
+    private void BusquedaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusquedaBotonActionPerformed
+            BusquedaCancion newframe = new BusquedaCancion();
 
-            if (result == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = fileChooser.getSelectedFile();
-                String selectedFilePath = selectedFile.getAbsolutePath();
+        newframe.setVisible(true);
+        
+        
 
-                try (FileWriter writer = new FileWriter("lista_" + listaActual.toLowerCase().replace(" ", "_") + ".txt", true)) {
-                    writer.write(selectedFilePath + "\n");
-                    JOptionPane.showMessageDialog(this, "La canción se ha agregado a la lista correctamente.", "Canción agregada", JOptionPane.INFORMATION_MESSAGE);
-                } catch (IOException e) {
-                    JOptionPane.showMessageDialog(this, "Error al agregar la canción a la lista: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Selecciona una lista primero.", "No se ha seleccionado ninguna lista", JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_BotonBusquedaActionPerformed
+        
+    }//GEN-LAST:event_BusquedaBotonActionPerformed
 
 //ListasListas ***********************************************
     private void cargarNombresListas() {
@@ -747,8 +733,8 @@ private void mostrarInformacionLista(String nombreLista) {
     private javax.swing.JButton Anterior;
     private javax.swing.JButton AñadirCancion;
     private javax.swing.JButton AñadirLista;
-    private javax.swing.JButton BotonBusqueda;
     private javax.swing.JButton BotonListas;
+    private javax.swing.JButton BusquedaBoton;
     private javax.swing.JButton Detener;
     private javax.swing.JButton EliminarCancion1;
     private javax.swing.JButton EliminarLista;
