@@ -25,6 +25,7 @@ public class Sema11 {
                 frame.getContentPane().add(customizer);
                 frame.pack();
                 frame.setVisible(true);
+                //comentario
             }
         });
     }
